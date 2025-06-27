@@ -1,0 +1,19 @@
+[project]
+name = "ytb-trends"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.13",
+    "google-api-python-client>=2.174.0",
+    "jinja2>=3.1.6",
+    "marimo>=0.14.8",
+    "pandas>=2.3.0",
+    "pgvector>=0.4.1",
+    "psycopg2-binary>=2.9.10",
+    "python-dotenv>=1.1.1",
+    "python-multipart>=0.0.20",
+    "sqlmodel>=0.0.24",
+    "uvicorn>=0.34.3",
+]

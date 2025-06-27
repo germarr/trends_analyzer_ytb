@@ -1,0 +1,180 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.14.8"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "fe87568133a181394357ff1df70b4edc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "e94ec1d8cbe2922ba443abc97568d833",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "c0e1eb1091a6f80495fd3bfe491b4a4c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "99dfcc2be31f359690f2af24f4640df5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "1785b58bb5b1827c511281472849a07e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "3f71cfe96bda7491c85096ea053635cf",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "name 'conn' is not defined",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\executor.py&quot;</span>, line <span class=\"m\">138</span>, in <span class=\"n\">execute_cell</span>\n<span class=\"w\">    </span><span class=\"n\">exec</span><span class=\"p\">(</span><span class=\"n\">cell</span><span class=\"o\">.</span><span class=\"n\">body</span><span class=\"p\">,</span> <span class=\"n\">glbls</span><span class=\"p\">)</span>\n  File <span class=\"nb\">&quot;C:\\Users\\gerym\\AppData\\Local\\Temp\\marimo_4808\\__marimo__cell_PKri_.py&quot;</span>, line <span class=\"m\">4</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">channel_exists_in_db</span> <span class=\"o\">=</span> <span class=\"n\">conn</span><span class=\"o\">.</span><span class=\"n\">execute</span><span class=\"p\">(</span>\n<span class=\"gr\">NameError</span>: <span class=\"n\">name &#39;conn&#39; is not defined</span>\n</pre></div>\n</span>"
+        }
+      ]
+    },
+    {
+      "id": "Xref",
+      "code_hash": "1f15d6c464714256bf23740bd32a74ae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "d7b1ce7e90b5a86754c7daf913c0030a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "6ab9e9d5445f07ecfee4343b2033b0ce",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "cefb92a5f0d0fdc992932929f2b13d4b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "34fdfe3e826f1f8d2461f12e5417b930",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "8c102fb08cd03f8c2bd97c2f394f404b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='emfo-0' random-id='f2a15513-4727-6078-0c50-5bc88d83aac5'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;&#92;&quot;:&#92;&quot;videoid&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;title&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;description&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;thumbnails&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;video_type&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;publishedat&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;datetime64[us]&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;categoryid&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;object&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;viewcount&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;int64&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;duration&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;int64&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;likecount&#92;&quot;,&#92;&quot;value&#92;&quot;:&#92;&quot;int64&#92;&quot;}]&quot;' data-total-rows='13' data-total-columns='1' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;value&quot;, [&quot;string&quot;, &quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[&quot;&quot;]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "--- Logging error ---\nTraceback (most recent call last):\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\functions.py\", line 64, in __call__\n    return self.function(parse_raw(args, self.arg_cls))\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_plugins\\ui\\_impl\\table.py\", line 810, in _get_column_summaries\n    chart_data, _ = self._to_chart_data_url(self._searched_manager)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_plugins\\ui\\_impl\\table.py\", line 832, in _to_chart_data_url\n    data_url = mo_data.arrow(table_manager.to_arrow_ipc()).url\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_plugins\\ui\\_impl\\tables\\pandas_table.py\", line 147, in to_arrow_ipc\n    self._original_data.to_feather(out, compression=\"uncompressed\")\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pandas\\core\\frame.py\", line 2943, in to_feather\n    to_feather(self, path, **kwargs)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pandas\\io\\feather_format.py\", line 65, in to_feather\n    feather.write_feather(df, handles.handle, **kwargs)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pyarrow\\feather.py\", line 156, in write_feather\n    table = Table.from_pandas(df, preserve_index=preserve_index)\n  File \"pyarrow\\\\table.pxi\", line 4793, in pyarrow.lib.Table.from_pandas\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pyarrow\\pandas_compat.py\", line 639, in dataframe_to_arrays\n    arrays = [convert_column(c, f)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pyarrow\\pandas_compat.py\", line 639, in <listcomp>\n    arrays = [convert_column(c, f)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pyarrow\\pandas_compat.py\", line 626, in convert_column\n    raise e\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\pyarrow\\pandas_compat.py\", line 620, in convert_column\n    result = pa.array(col, type=type_, from_pandas=True, safe=safe)\n  File \"pyarrow\\\\array.pxi\", line 365, in pyarrow.lib.array\n  File \"pyarrow\\\\array.pxi\", line 90, in pyarrow.lib._ndarray_to_array\n  File \"pyarrow\\\\error.pxi\", line 92, in pyarrow.lib.check_status\npyarrow.lib.ArrowInvalid: (\"Could not convert dtype('O') with type numpy.dtypes.ObjectDType: did not recognize Python value type when inferring an Arrow data type\", 'Conversion failed for column value with type object')\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\logging\\__init__.py\", line 1103, in emit\n    stream.write(msg + self.terminator)\nOSError: [WinError 1] Incorrect function\nCall stack:\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\spawn.py\", line 116, in spawn_main\n    exitcode = _main(fd, parent_sentinel)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\spawn.py\", line 129, in _main\n    return self._bootstrap(parent_sentinel)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\process.py\", line 314, in _bootstrap\n    self.run()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\process.py\", line 108, in run\n    self._target(*self._args, **self._kwargs)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2818, in launch_kernel\n    asyncio.run(control_loop(kernel))\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\runners.py\", line 44, in run\n    return loop.run_until_complete(main)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 636, in run_until_complete\n    self.run_forever()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 603, in run_forever\n    self._run_once()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 1909, in _run_once\n    handle._run()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\events.py\", line 80, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2812, in control_loop\n    await kernel.handle_message(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2153, in handle_message\n    await self.request_handler.handle(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2629, in handle\n    return await handler(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2075, in handle_function_call\n    status, ret, _ = await self.function_call_request(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 1950, in function_call_request\n    response = cast(JSONType, function(request.args))\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\functions.py\", line 66, in __call__\n    LOGGER.error(f\"Error calling function {self.name}: {e}\")\nMessage: 'Error calling function get_column_summaries: (\"Could not convert dtype(\\'O\\') with type numpy.dtypes.ObjectDType: did not recognize Python value type when inferring an Arrow data type\", \\'Conversion failed for column value with type object\\')'\nArguments: ()\n"
+        }
+      ]
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "66ab28f1b9659b891f4177910784140a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "c179799f6564f7fb503ed667922c6b01",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

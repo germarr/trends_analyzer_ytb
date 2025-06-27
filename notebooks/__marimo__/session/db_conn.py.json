@@ -1,0 +1,136 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.14.8"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "68a6a0a3a7fae1166f72c3d1f402dfbe",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "f8e025fa66cd70ef4f1459975c5d5429",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "9217f8634567f40bba8141939618db28",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "f68df97326eac6d6f92c19974481b984",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "766c8a5c22210b7e4c3a556073116048",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "--- Logging error ---\nTraceback (most recent call last):\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_data\\get_datasets.py\", line 94, in get_databases_from_duckdb\n    return _get_databases_from_duckdb_internal(connection, engine_name)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_data\\get_datasets.py\", line 117, in _get_databases_from_duckdb_internal\n    tables_result = connection.execute(\"SHOW ALL TABLES\").fetchall()\nduckdb.duckdb.NotImplementedException: Not implemented Error: Unsupported catalog type for duckdb_columns\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\logging\\__init__.py\", line 1103, in emit\n    stream.write(msg + self.terminator)\nOSError: [WinError 1] Incorrect function\nCall stack:\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\spawn.py\", line 116, in spawn_main\n    exitcode = _main(fd, parent_sentinel)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\spawn.py\", line 129, in _main\n    return self._bootstrap(parent_sentinel)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\process.py\", line 314, in _bootstrap\n    self.run()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\multiprocessing\\process.py\", line 108, in run\n    self._target(*self._args, **self._kwargs)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2818, in launch_kernel\n    asyncio.run(control_loop(kernel))\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\runners.py\", line 44, in run\n    return loop.run_until_complete(main)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 636, in run_until_complete\n    self.run_forever()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 603, in run_forever\n    self._run_once()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\base_events.py\", line 1909, in _run_once\n    handle._run()\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\asyncio\\events.py\", line 80, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2812, in control_loop\n    await kernel.handle_message(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2153, in handle_message\n    await self.request_handler.handle(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2629, in handle\n    return await handler(request)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 2037, in handle_execute_multiple\n    await self.run(request.execution_requests)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 1536, in run\n    await _run_with_uninstantiated_requests(execution_requests)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 1525, in _run_with_uninstantiated_requests\n    await self._run_cells(\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 1336, in _run_cells\n    while cell_ids := await self._run_cells_internal(cell_ids):\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runtime.py\", line 1415, in _run_cells_internal\n    await runner.run_all()\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runner\\cell_runner.py\", line 604, in run_all\n    post_hook(cell, self, run_result)\n  File \"C:\\Users\\gerym\\AppData\\Roaming\\uv\\python\\cpython-3.10.18-windows-x86_64-none\\lib\\contextlib.py\", line 79, in inner\n    return func(*args, **kwds)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runner\\hooks_post_execution.py\", line 171, in _broadcast_data_source_connection\n    connections=[\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\runner\\hooks_post_execution.py\", line 172, in <listcomp>\n    engine_to_data_source_connection(variable, engine)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_sql\\get_engines.py\", line 90, in engine_to_data_source_connection\n    databases = engine.get_databases(\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_sql\\engines\\duckdb.py\", line 133, in get_databases\n    return get_databases_from_duckdb(self._connection, self._engine_name)\n  File \"C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_data\\get_datasets.py\", line 96, in get_databases_from_duckdb\n    LOGGER.exception(\"Failed to get databases from DuckDB\")\nMessage: 'Failed to get databases from DuckDB'\nArguments: ()\n"
+        }
+      ]
+    },
+    {
+      "id": "wNmZ",
+      "code_hash": "1243998ba6f1fbe58545bf499a6e11f9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='wNmZ-0' random-id='ccddc397-a015-f75a-41bf-b146b2e58f63'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-06-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:12,&#92;&quot;total_views&#92;&quot;:935838.0,&#92;&quot;total_duration&#92;&quot;:48510.0,&#92;&quot;total_likes&#92;&quot;:14099.0,&#92;&quot;total_comments&#92;&quot;:1891.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:77986.5,&#92;&quot;avg_duration&#92;&quot;:4042.5,&#92;&quot;avg_total_likes&#92;&quot;:1174.9166666667,&#92;&quot;avg_total_comments&#92;&quot;:157.5833333333},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-05-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:20,&#92;&quot;total_views&#92;&quot;:3890989.0,&#92;&quot;total_duration&#92;&quot;:58842.0,&#92;&quot;total_likes&#92;&quot;:58285.0,&#92;&quot;total_comments&#92;&quot;:5092.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:194549.45,&#92;&quot;avg_duration&#92;&quot;:2942.1,&#92;&quot;avg_total_likes&#92;&quot;:2914.25,&#92;&quot;avg_total_comments&#92;&quot;:254.6},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-04-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:18,&#92;&quot;total_views&#92;&quot;:1269932.0,&#92;&quot;total_duration&#92;&quot;:50783.0,&#92;&quot;total_likes&#92;&quot;:27519.0,&#92;&quot;total_comments&#92;&quot;:3473.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:70551.7777777778,&#92;&quot;avg_duration&#92;&quot;:2821.2777777778,&#92;&quot;avg_total_likes&#92;&quot;:1528.8333333333,&#92;&quot;avg_total_comments&#92;&quot;:192.9444444444},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-03-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:11,&#92;&quot;total_views&#92;&quot;:1595622.0,&#92;&quot;total_duration&#92;&quot;:47571.0,&#92;&quot;total_likes&#92;&quot;:35744.0,&#92;&quot;total_comments&#92;&quot;:3764.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:145056.5454545454,&#92;&quot;avg_duration&#92;&quot;:4324.6363636364,&#92;&quot;avg_total_likes&#92;&quot;:3249.4545454545,&#92;&quot;avg_total_comments&#92;&quot;:342.1818181818},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-02-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:13,&#92;&quot;total_views&#92;&quot;:1112217.0,&#92;&quot;total_duration&#92;&quot;:45599.0,&#92;&quot;total_likes&#92;&quot;:21346.0,&#92;&quot;total_comments&#92;&quot;:2651.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:85555.1538461538,&#92;&quot;avg_duration&#92;&quot;:3507.6153846154,&#92;&quot;avg_total_likes&#92;&quot;:1642.0,&#92;&quot;avg_total_comments&#92;&quot;:203.9230769231},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-01-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:15,&#92;&quot;total_views&#92;&quot;:1908818.0,&#92;&quot;total_duration&#92;&quot;:41814.0,&#92;&quot;total_likes&#92;&quot;:31417.0,&#92;&quot;total_comments&#92;&quot;:2951.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:127254.5333333333,&#92;&quot;avg_duration&#92;&quot;:2787.6,&#92;&quot;avg_total_likes&#92;&quot;:2094.4666666667,&#92;&quot;avg_total_comments&#92;&quot;:196.7333333333},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-12-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:12,&#92;&quot;total_views&#92;&quot;:497133.0,&#92;&quot;total_duration&#92;&quot;:44255.0,&#92;&quot;total_likes&#92;&quot;:10719.0,&#92;&quot;total_comments&#92;&quot;:866.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:41427.75,&#92;&quot;avg_duration&#92;&quot;:3687.9166666667,&#92;&quot;avg_total_likes&#92;&quot;:893.25,&#92;&quot;avg_total_comments&#92;&quot;:72.1666666667},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-11-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:14,&#92;&quot;total_views&#92;&quot;:1398255.0,&#92;&quot;total_duration&#92;&quot;:54643.0,&#92;&quot;total_likes&#92;&quot;:32069.0,&#92;&quot;total_comments&#92;&quot;:2942.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:99875.3571428571,&#92;&quot;avg_duration&#92;&quot;:3903.0714285714,&#92;&quot;avg_total_likes&#92;&quot;:2290.6428571429,&#92;&quot;avg_total_comments&#92;&quot;:210.1428571429},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-10-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:13,&#92;&quot;total_views&#92;&quot;:1039410.0,&#92;&quot;total_duration&#92;&quot;:55802.0,&#92;&quot;total_likes&#92;&quot;:12488.0,&#92;&quot;total_comments&#92;&quot;:1953.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:79954.6153846154,&#92;&quot;avg_duration&#92;&quot;:4292.4615384615,&#92;&quot;avg_total_likes&#92;&quot;:960.6153846154,&#92;&quot;avg_total_comments&#92;&quot;:150.2307692308},{&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-09-01T00:00:00.000&#92;&quot;,&#92;&quot;published_videos&#92;&quot;:18,&#92;&quot;total_views&#92;&quot;:4930621.0,&#92;&quot;total_duration&#92;&quot;:56745.0,&#92;&quot;total_likes&#92;&quot;:70317.0,&#92;&quot;total_comments&#92;&quot;:7068.0,&#92;&quot;avg_published_videos&#92;&quot;:10.2127659574,&#92;&quot;avg_total_views&#92;&quot;:273923.3888888889,&#92;&quot;avg_duration&#92;&quot;:3152.5,&#92;&quot;avg_total_likes&#92;&quot;:3906.5,&#92;&quot;avg_total_comments&#92;&quot;:392.6666666667}]&quot;' data-total-rows='12' data-total-columns='13' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;channelid&quot;, [&quot;string&quot;, &quot;object&quot;]], [&quot;video_type&quot;, [&quot;string&quot;, &quot;object&quot;]], [&quot;fdom&quot;, [&quot;unknown&quot;, &quot;datetime64[us]&quot;]], [&quot;published_videos&quot;, [&quot;integer&quot;, &quot;int64&quot;]], [&quot;total_views&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;total_duration&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;total_likes&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;total_comments&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;avg_published_videos&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;avg_total_views&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;avg_duration&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;avg_total_likes&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;avg_total_comments&quot;, [&quot;number&quot;, &quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "41bc86a949968ac50057cb542109a8dd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='PKri-0' random-id='785c5151-f755-e905-ebb5-5aeb80225176'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-06-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:935838.0,&#92;&quot;rolling_viewcount&#92;&quot;:2032253.0,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-05-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:3890989.0,&#92;&quot;rolling_viewcount&#92;&quot;:2252181.0,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-04-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1269932.0,&#92;&quot;rolling_viewcount&#92;&quot;:1325923.67,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-03-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1595622.0,&#92;&quot;rolling_viewcount&#92;&quot;:1538885.67,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-02-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1112217.0,&#92;&quot;rolling_viewcount&#92;&quot;:1172722.67,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2025-01-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1908818.0,&#92;&quot;rolling_viewcount&#92;&quot;:1268068.67,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1088613.95},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-12-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:497133.0,&#92;&quot;rolling_viewcount&#92;&quot;:978266.0,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1566612.97},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-11-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1398255.0,&#92;&quot;rolling_viewcount&#92;&quot;:2456095.33,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1566612.97},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-10-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:1039410.0,&#92;&quot;rolling_viewcount&#92;&quot;:2947287.33,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1566612.97},{&#92;&quot;channeltitle&#92;&quot;:&#92;&quot;The Verge&#92;&quot;,&#92;&quot;channelid&#92;&quot;:&#92;&quot;UCddiUEpeqJcYeBxX1IVBKvQ&#92;&quot;,&#92;&quot;video_type&#92;&quot;:&#92;&quot;videos&#92;&quot;,&#92;&quot;fdom&#92;&quot;:&#92;&quot;2024-09-01T00:00:00.000&#92;&quot;,&#92;&quot;viewcount&#92;&quot;:4930621.0,&#92;&quot;rolling_viewcount&#92;&quot;:3506324.67,&#92;&quot;global_std_deviation&#92;&quot;:1333695.85,&#92;&quot;yearly_std_deviation&#92;&quot;:1566612.97}]&quot;' data-total-rows='14' data-total-columns='8' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;channeltitle&quot;, [&quot;string&quot;, &quot;object&quot;]], [&quot;channelid&quot;, [&quot;string&quot;, &quot;object&quot;]], [&quot;video_type&quot;, [&quot;string&quot;, &quot;object&quot;]], [&quot;fdom&quot;, [&quot;unknown&quot;, &quot;datetime64[us]&quot;]], [&quot;viewcount&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;rolling_viewcount&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;global_std_deviation&quot;, [&quot;number&quot;, &quot;float64&quot;]], [&quot;yearly_std_deviation&quot;, [&quot;number&quot;, &quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "5d3491e0d7a2881748d42d6675e50c65",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "name 'co' is not defined",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;C:\\Users\\gerym\\Documents\\ytb_trends\\.venv\\lib\\site-packages\\marimo\\_runtime\\executor.py&quot;</span>, line <span class=\"m\">139</span>, in <span class=\"n\">execute_cell</span>\n<span class=\"w\">    </span><span class=\"k\">return</span> <span class=\"nb\">eval</span><span class=\"p\">(</span><span class=\"n\">cell</span><span class=\"o\">.</span><span class=\"n\">last_expr</span><span class=\"p\">,</span> <span class=\"n\">glbls</span><span class=\"p\">)</span>\n  File <span class=\"nb\">&quot;C:\\Users\\gerym\\AppData\\Local\\Temp\\marimo_32232\\__marimo__cell_Xref_.py&quot;</span>, line <span class=\"m\">1</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">co</span><span class=\"o\">.</span><span class=\"n\">execute</span><span class=\"p\">(</span><span class=\"s2\">&quot;&quot;&quot;SELECT * FROM channelvideos&quot;&quot;&quot;</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">df</span><span class=\"p\">()</span>\n<span class=\"gr\">NameError</span>: <span class=\"n\">name &#39;co&#39; is not defined</span>\n</pre></div>\n</span>"
+        }
+      ]
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "d6a44b63acb7be7dc297dbb7059d20b6",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

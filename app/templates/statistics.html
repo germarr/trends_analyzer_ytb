@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Statistics - YouTube Trends</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <style>
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .video-list {
+            list-style: none;
+            padding: 0;
+        }
+        .video-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+        .video-title {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .video-stats {
+            font-weight: bold;
+            color: #1976d2;
+        }
+        .channel-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .channel-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stats-container">
+        <a href="/channels" class="back-button">← Back to Channels</a>
+        
+        {% if stats.channel_info %}
+        <div class="channel-header">
+            <h1 class="channel-title">{{ stats.channel_info.channeltitle }}</h1>
+            <p>Channel Statistics</p>
+        </div>
+        {% endif %}
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_videos }}</div>
+                <div class="stat-label">Total Videos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_views | human_format }}</div>
+                <div class="stat-label">Total Views</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_likes | human_format }}</div>
+                <div class="stat-label">Total Likes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_comments | human_format }}</div>
+                <div class="stat-label">Total Comments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.avg_views | human_format }}</div>
+                <div class="stat-label">Avg Views per Video</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.avg_likes | human_format }}</div>
+                <div class="stat-label">Avg Likes per Video</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.avg_duration }}min</div>
+                <div class="stat-label">Avg Duration</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.recent_videos }}</div>
+                <div class="stat-label">Videos (Last 30 Days)</div>
+            </div>
+        </div>
+
+        {% if stats.video_types %}
+        <div class="section">
+            <h3>Video Types Distribution</h3>
+            <div class="stats-grid">
+                {% for video_type, count in stats.video_types.items() %}
+                <div class="stat-card">
+                    <div class="stat-number">{{ count }}</div>
+                    <div class="stat-label">{{ video_type }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if stats.top_videos_by_views %}
+        <div class="section">
+            <h3>Top 5 Videos by Views</h3>
+            <ul class="video-list">
+                {% for video in stats.top_videos_by_views %}
+                <li class="video-item">
+                    <div class="video-title">{{ video.title[:80] }}{% if video.title|length > 80 %}...{% endif %}</div>
+                    <div class="video-stats">{{ video.viewcount | human_format }} views</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if stats.top_videos_by_likes %}
+        <div class="section">
+            <h3>Top 5 Videos by Likes</h3>
+            <ul class="video-list">
+                {% for video in stats.top_videos_by_likes %}
+                <li class="video-item">
+                    <div class="video-title">{{ video.title[:80] }}{% if video.title|length > 80 %}...{% endif %}</div>
+                    <div class="video-stats">{{ video.likecount | human_format }} likes</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

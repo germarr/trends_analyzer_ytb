@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channels - YouTube Trends Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube Channels</h1>
+            <p>Found {{ total_channels }} channels in database</p>
+            <nav>
+                <a href="/" class="nav-link">← Back to Home</a>
+            </nav>
+        </header>
+        
+        <main>
+            {% if channels %}
+                <div class="channels-grid">
+                    {% for channel in channels %}
+                        <div class="channel-card">
+                            <div class="channel-header">
+                                {% if channel.thumbnail != 'No Information' %}
+                                    <img src="{{ channel.thumbnail }}" alt="{{ channel.channeltitle }}" class="channel-thumbnail">
+                                {% endif %}
+                                <div class="channel-info">
+                                    <h3 class="channel-title">{{ channel.channeltitle }}</h3>
+                                    {% if channel.customurl != 'No Information' %}
+                                        <p class="channel-url">{{ channel.customurl }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="channel-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Subscribers:</span>
+                                    <span class="stat-value">{{ channel.subscribercount | human_format }}</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Views:</span>
+                                    <span class="stat-value">{{ channel.viewcount | human_format }}</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Videos:</span>
+                                    <span class="stat-value">{{ channel.videocount | human_format }}</span>
+                                </div>
+                                {% if channel.country != 'No Information' %}
+                                    <div class="stat">
+                                        <span class="stat-label">Country:</span>
+                                        <span class="stat-value">{{ channel.country }}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            {% if channel.channeldescription != 'No Information' %}
+                                <div class="channel-description">
+                                    <p>{{ channel.channeldescription[:200] }}{% if channel.channeldescription|length > 200 %}...{% endif %}</p>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="channel-meta">
+                                <span class="publish-date">
+                                    {% if channel.publishedat %}
+                                        Created: {{ channel.publishedat.strftime('%B %d, %Y') }}
+                                    {% endif %}
+                                </span>
+                                <span class="success-status {{ 'success' if channel.success else 'error' }}">
+                                    {{ 'Complete' if channel.success else 'Incomplete' }}
+                                </span>
+                            </div>
+                            
+                            <div class="channel-actions">
+                                <a href="/statistics/{{ channel.channelid }}" class="stats-btn">View Statistics</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-channels">
+                    <p>No channels found in the database.</p>
+                    <a href="/" class="submit-btn">Add Your First Channel</a>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
