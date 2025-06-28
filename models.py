@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # SQLite database configuration
-DATABASE_PATH = r'C:\Users\gerym\Documents\ytb_trends\channel_app.db'
+DATABASE_PATH = os.getenv('DATABASE_PATH')
 
 class DIMChannel(SQLModel, table=True):
     channelid: str = Field(primary_key=True)

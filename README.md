@@ -11,6 +11,7 @@ A Python application for analyzing YouTube channel performance and video metrics
 - **Video Type Classification**: Automatically categorize content as videos, shorts, or live streams
 - **Comprehensive Metrics**: Track views, likes, comments, duration, and more
 - **Batch Processing**: Efficiently process large amounts of video data
+- **Statistics & Visualization**: Interactive statistics page with charts and top videos (with thumbnails and links)
 
 ## Tech Stack
 
@@ -47,14 +48,16 @@ youtube_key=YOUR_YOUTUBE_API_KEY
 
 Start the FastAPI application:
 ```bash
-cd app
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 Visit `http://localhost:8000` to access the web interface where you can:
 - Submit YouTube video URLs to analyze channels
 - View channel statistics and video metrics
 - Browse stored channel data
+- Explore the **Statistics** page for each channel, including:
+  - Interactive charts (upload timeline, duration, frequency, trends)
+  - Top 5 videos by views and likes (with thumbnails and direct links)
 
 ### Programmatic Usage
 
@@ -86,7 +89,12 @@ data = store_channel_and_videos_data(channel_info["channel_id"], max_videos=200)
 
 ## Data Analysis
 
-The project includes Marimo notebooks in the `notebooks/` directory for data analysis and visualization of the collected YouTube metrics.
+The project includes Marimo notebooks in the `notebooks/` directory for data analysis and visualization of the collected YouTube metrics. You can use these notebooks for custom queries and deeper insights.
+
+## Environment Variables
+
+- `youtube_key`: Your YouTube Data API v3 key (required)
+- `DATABASE_PATH`: (optional) Path to your SQLite database. Defaults to `channel.db` if not set.
 
 ## API Limits
 

@@ -102,6 +102,14 @@ def _(duckdb):
 @app.cell
 def _(abra):
     abra.execute("""
+    SELECT 
+    """)
+    return
+
+
+@app.cell
+def _(abra):
+    abra.execute("""
     WITH base as (
     SELECT channelid, 
         video_type, 
@@ -167,14 +175,28 @@ def _(abra):
 
 
 @app.cell
-def _(co):
-    co.execute("""SELECT channeltitle FROM dimchannel""").df()
+def _(abra):
+    abra.execute("""SELECT channeltitle, channelid FROM dimchannel""").df()
     return
 
 
 @app.cell
-def _(co):
-    co.execute("""SELECT * FROM channelvideos""").df()
+def _():
+    return
+
+
+@app.cell
+def _(abra):
+    abra.execute("""with base as (SELECT channelid, video_type, date_trunc('month', publishedat::DATE) as fdom,
+        COUNT(videoid) as published_videos, 
+        SUM(viewcount) viewcount, ROUND(MEDIAN(duration), 2) duration, SUM(likecount) likecount, SUM(commentcount) commentcount
+        FROM channelvideos
+        GROUP BY 1, 2, 3)
+    SELECT base.*, channeltitle
+    FROM base
+    LEFT JOIN dimchannel ON base.channelid = dimchannel.channelid
+    WHERE base.channelid = 'UCarEovlrD9QY-fy-Z6apIDQ'
+    """).df()
     return
 
 

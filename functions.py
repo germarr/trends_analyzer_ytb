@@ -21,8 +21,8 @@ load_dotenv()
 youtube_key = os.getenv('youtube_key')
 youtube = build('youtube', 'v3', developerKey=youtube_key)
 
-# Database setup
-DATABASE_PATH = r'C:\\Users\\gerym\\Documents\\ytb_trends\\channel.db'
+# SQLite database configuration
+DATABASE_PATH = os.getenv('DATABASE_PATH')
 CONNECTION_STRING = f'sqlite:///{DATABASE_PATH}'
 
 def create_db_and_tables(e):
@@ -316,7 +316,7 @@ def store_channel_and_videos_data(channel_id: str, max_videos: int = 200) -> Dic
                         description=video_data["description"],
                         thumbnails=video_data["thumbnails"],
                         video_type=video_data["video_type"],
-                        publishedat=parser.isoparse(channel_details["publishedat"]),
+                        publishedat=parser.isoparse(video_data["publishedat"]),
                         categoryid=video_data["categoryid"],
                         viewcount=video_data["viewcount"],
                         duration=video_data["duration"],

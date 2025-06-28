@@ -353,6 +353,13 @@
     </style>
 </head>
 <body>
+    <nav class="navbar" style="position:fixed;top:0;left:0;width:100%;background:#fff;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-bottom:2px solid #ececec;">
+        <div class="nav-container" style="max-width:1100px;margin:0 auto;display:flex;justify-content:flex-start;align-items:center;padding:0.5rem 1.5rem;">
+            <a href="/" class="nav-link" style="color:#764ba2;text-decoration:none;font-weight:600;margin-right:1.5rem;font-size:1.1rem;transition:color 0.2s;">Home</a>
+            <a href="/channels" class="nav-link" style="color:#764ba2;text-decoration:none;font-weight:600;margin-right:1.5rem;font-size:1.1rem;transition:color 0.2s;">Channels</a>
+        </div>
+    </nav>
+    <div class="container" style="margin-top:80px;">
     <div class="results-container">
         {% if error %}
             <div class="error-message">
@@ -461,5 +468,6 @@
             <a href="/" class="back-button">← Analyze Another Video</a>
         {% endif %}
     </div>
+</div>
 </body>
 </html>

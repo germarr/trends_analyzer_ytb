@@ -5,9 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Channels - YouTube Trends Analyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .filters-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white;
+        }
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .filters-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 0;
+        }
+        .filters-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.2s ease;
+        }
+        .filters-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .filters-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+        .filters-content.collapsed {
+            display: none;
+        }
+        .filter-group {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+        }
+        .filter-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .filter-input, .filter-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 0.9em;
+            transition: border-color 0.2s ease;
+        }
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        .filter-range {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+        .filter-range span {
+            font-size: 0.85em;
+            text-align: center;
+        }
+        .filter-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+        .filter-btn.apply {
+            background: #ffd700;
+            color: #333;
+        }
+        .filter-btn.apply:hover {
+            background: #ffed4e;
+            transform: translateY(-1px);
+        }
+        .filter-btn.clear {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .filter-btn.clear:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .filter-summary {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .channels-grid.filtered .channel-card {
+            transition: all 0.3s ease;
+        }
+        .channels-grid.filtered .channel-card.hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar" style="position:fixed;top:0;left:0;width:100%;background:#fff;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-bottom:2px solid #ececec;">
+        <div class="nav-container" style="max-width:1100px;margin:0 auto;display:flex;justify-content:flex-start;align-items:center;padding:0.5rem 1.5rem;">
+            <a href="/" class="nav-link" style="color:#764ba2;text-decoration:none;font-weight:600;margin-right:1.5rem;font-size:1.1rem;transition:color 0.2s;">Home</a>
+            <a href="/channels" class="nav-link" style="color:#764ba2;text-decoration:none;font-weight:600;margin-right:1.5rem;font-size:1.1rem;transition:color 0.2s;">Channels</a>
+        </div>
+    </nav>
+    <div class="container" style="margin-top:80px;">
         <header>
             <h1>YouTube Channels</h1>
             <p>Found {{ total_channels }} channels in database</p>
@@ -16,8 +147,127 @@
             </nav>
         </header>
         
+        <!-- Filters Panel -->
+        <div class="filters-panel">
+            <div class="filters-header">
+                <h3 class="filters-title">🔍 Filter Channels</h3>
+                <button class="filters-toggle" onclick="toggleFilters()">Hide Filters</button>
+            </div>
+            <div class="filters-content" id="filtersContent">
+                <div class="filter-group">
+                    <label class="filter-label">Channel Name</label>
+                    <input type="text" class="filter-input" id="nameFilter" placeholder="Search by channel name...">
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Subscriber Count Range</label>
+                    <div class="filter-range">
+                        <input type="number" class="filter-input" id="subMin" placeholder="Min">
+                        <span>to</span>
+                        <input type="number" class="filter-input" id="subMax" placeholder="Max">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Video Count Range</label>
+                    <div class="filter-range">
+                        <input type="number" class="filter-input" id="videoMin" placeholder="Min">
+                        <span>to</span>
+                        <input type="number" class="filter-input" id="videoMax" placeholder="Max">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Total Views Range</label>
+                    <div class="filter-range">
+                        <input type="number" class="filter-input" id="viewMin" placeholder="Min">
+                        <span>to</span>
+                        <input type="number" class="filter-input" id="viewMax" placeholder="Max">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Country</label>
+                    <select class="filter-select" id="countryFilter">
+                        <option value="">All Countries</option>
+                        {% for channel in channels %}
+                            {% if channel.country != 'No Information' %}
+                                <option value="{{ channel.country }}">{{ channel.country }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Channel Size</label>
+                    <select class="filter-select" id="sizeFilter">
+                        <option value="">All Sizes</option>
+                        <option value="nano">Nano (< 1K)</option>
+                        <option value="micro">Micro (1K - 10K)</option>
+                        <option value="small">Small (10K - 100K)</option>
+                        <option value="medium">Medium (100K - 1M)</option>
+                        <option value="large">Large (1M - 10M)</option>
+                        <option value="mega">Mega (> 10M)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Data Status</label>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="complete">Complete Data</option>
+                        <option value="incomplete">Incomplete Data</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Sort By</label>
+                    <select class="filter-select" id="sortFilter">
+                        <option value="name">Channel Name</option>
+                        <option value="subscribers-desc">Subscribers (High to Low)</option>
+                        <option value="subscribers-asc">Subscribers (Low to High)</option>
+                        <option value="views-desc">Views (High to Low)</option>
+                        <option value="views-asc">Views (Low to High)</option>
+                        <option value="videos-desc">Videos (High to Low)</option>
+                        <option value="videos-asc">Videos (Low to High)</option>
+                        <option value="created-desc">Newest First</option>
+                        <option value="created-asc">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button class="filter-btn apply" onclick="applyFilters()">Apply Filters</button>
+                <button class="filter-btn clear" onclick="clearFilters()">Clear All</button>
+            </div>
+            
+            <div class="filter-summary" id="filterSummary">
+                Showing all {{ total_channels }} channels
+            </div>
+        </div>
+        
         <main>
             {% if channels %}
+                <!-- Overview Charts Section -->
+                <div style="margin-bottom: 40px;">
+                    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Channel Analytics Overview</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                        <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <h3 style="text-align: center; margin-bottom: 15px; color: #333;">Top Channels Comparison</h3>
+                            <div style="width: 100%; height: 300px;">
+                                <canvas id="channelComparisonChart" style="width: 100%; height: 100%;"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <h3 style="text-align: center; margin-bottom: 15px; color: #333;">Subscribers vs Views</h3>
+                            <div style="width: 100%; height: 300px;">
+                                <canvas id="scatterChart" style="width: 100%; height: 100%;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="channels-grid">
                     {% for channel in channels %}
                         <div class="channel-card">
@@ -85,5 +335,434 @@
             {% endif %}
         </main>
     </div>
+
+    {% if channels %}
+    <script>
+        // Chart configuration
+        Chart.defaults.font.family = 'Arial, sans-serif';
+        Chart.defaults.font.size = 12;
+        
+        // Initialize overview charts
+        async function initializeOverviewCharts() {
+            try {
+                await Promise.all([
+                    createChannelComparisonChart(),
+                    createScatterChart()
+                ]);
+            } catch (error) {
+                console.error('Error initializing overview charts:', error);
+            }
+        }
+        
+        // Channel Comparison Chart
+        async function createChannelComparisonChart() {
+            const response = await fetch('/api/channels/comparison');
+            const data = await response.json();
+            
+            const ctx = document.getElementById('channelComparisonChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: 'Subscribers',
+                            data: data.subscriber_data,
+                            backgroundColor: 'rgba(25, 118, 210, 0.8)',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Total Views',
+                            data: data.view_data,
+                            backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        },
+                        y: {
+                            type: 'logarithmic',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Subscribers'
+                            }
+                        },
+                        y1: {
+                            type: 'logarithmic',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Total Views'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Scatter Chart
+        async function createScatterChart() {
+            const response = await fetch('/api/channels/scatter');
+            const data = await response.json();
+            
+            const ctx = document.getElementById('scatterChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Channels',
+                        data: data.scatter_data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Subscribers'
+                            }
+                        },
+                        y: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Total Views'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].raw.label;
+                                },
+                                label: function(context) {
+                                    return [
+                                        `Subscribers: ${context.raw.x.toLocaleString()}`,
+                                        `Views: ${context.raw.y.toLocaleString()}`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', initializeOverviewCharts);
+    </script>
+    {% endif %}
+
+    <script>
+        // Filter functionality
+        let filtersCollapsed = false;
+        let channelsData = [];
+        
+        // Initialize filters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFilters();
+            populateCountryOptions();
+        });
+        
+        function initializeFilters() {
+            // Store channel data for filtering
+            const channelCards = document.querySelectorAll('.channel-card');
+            channelCards.forEach((card, index) => {
+                const channelData = extractChannelData(card);
+                channelsData.push({
+                    element: card,
+                    data: channelData,
+                    originalIndex: index
+                });
+            });
+            
+            // Add event listeners for real-time filtering
+            document.getElementById('nameFilter').addEventListener('input', applyFilters);
+            document.getElementById('sortFilter').addEventListener('change', applyFilters);
+        }
+        
+        function extractChannelData(card) {
+            const title = card.querySelector('.channel-title').textContent.trim();
+            const stats = card.querySelectorAll('.stat-value');
+            
+            // Parse subscriber count
+            const subText = stats[0].textContent.trim();
+            const subscribers = parseHumanNumber(subText);
+            
+            // Parse view count
+            const viewText = stats[1].textContent.trim();
+            const views = parseHumanNumber(viewText);
+            
+            // Parse video count
+            const videoText = stats[2].textContent.trim();
+            const videos = parseHumanNumber(videoText);
+            
+            // Get country
+            const countryElement = card.querySelector('.stat:nth-child(4) .stat-value');
+            const country = countryElement ? countryElement.textContent.trim() : '';
+            
+            // Get status
+            const statusElement = card.querySelector('.success-status');
+            const isComplete = statusElement ? statusElement.classList.contains('success') : false;
+            
+            // Get creation date
+            const dateElement = card.querySelector('.publish-date');
+            const dateText = dateElement ? dateElement.textContent.trim() : '';
+            const createdDate = dateText ? new Date(dateText.replace('Created: ', '')) : new Date(0);
+            
+            return {
+                title,
+                subscribers,
+                views,
+                videos,
+                country,
+                isComplete,
+                createdDate
+            };
+        }
+        
+        function parseHumanNumber(text) {
+            if (!text || text === 'No Information') return 0;
+            
+            const num = parseFloat(text.replace(/[,\s]/g, ''));
+            if (text.includes('K')) return num * 1000;
+            if (text.includes('M')) return num * 1000000;
+            if (text.includes('B')) return num * 1000000000;
+            return num || 0;
+        }
+        
+        function getChannelSize(subscribers) {
+            if (subscribers < 1000) return 'nano';
+            if (subscribers < 10000) return 'micro';
+            if (subscribers < 100000) return 'small';
+            if (subscribers < 1000000) return 'medium';
+            if (subscribers < 10000000) return 'large';
+            return 'mega';
+        }
+        
+        function toggleFilters() {
+            const content = document.getElementById('filtersContent');
+            const button = document.querySelector('.filters-toggle');
+            
+            filtersCollapsed = !filtersCollapsed;
+            
+            if (filtersCollapsed) {
+                content.classList.add('collapsed');
+                button.textContent = 'Show Filters';
+            } else {
+                content.classList.remove('collapsed');
+                button.textContent = 'Hide Filters';
+            }
+        }
+        
+        function applyFilters() {
+            const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+            const subMin = parseFloat(document.getElementById('subMin').value) || 0;
+            const subMax = parseFloat(document.getElementById('subMax').value) || Infinity;
+            const videoMin = parseFloat(document.getElementById('videoMin').value) || 0;
+            const videoMax = parseFloat(document.getElementById('videoMax').value) || Infinity;
+            const viewMin = parseFloat(document.getElementById('viewMin').value) || 0;
+            const viewMax = parseFloat(document.getElementById('viewMax').value) || Infinity;
+            const countryFilter = document.getElementById('countryFilter').value;
+            const sizeFilter = document.getElementById('sizeFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+            
+            let filteredChannels = channelsData.filter(channel => {
+                const data = channel.data;
+                
+                // Name filter
+                if (nameFilter && !data.title.toLowerCase().includes(nameFilter)) {
+                    return false;
+                }
+                
+                // Subscriber range filter
+                if (data.subscribers < subMin || data.subscribers > subMax) {
+                    return false;
+                }
+                
+                // Video count range filter
+                if (data.videos < videoMin || data.videos > videoMax) {
+                    return false;
+                }
+                
+                // View count range filter
+                if (data.views < viewMin || data.views > viewMax) {
+                    return false;
+                }
+                
+                // Country filter
+                if (countryFilter && data.country !== countryFilter) {
+                    return false;
+                }
+                
+                // Size filter
+                if (sizeFilter && getChannelSize(data.subscribers) !== sizeFilter) {
+                    return false;
+                }
+                
+                // Status filter
+                if (statusFilter) {
+                    if (statusFilter === 'complete' && !data.isComplete) return false;
+                    if (statusFilter === 'incomplete' && data.isComplete) return false;
+                }
+                
+                return true;
+            });
+            
+            // Sort filtered channels
+            filteredChannels.sort((a, b) => {
+                const dataA = a.data;
+                const dataB = b.data;
+                
+                switch (sortFilter) {
+                    case 'name':
+                        return dataA.title.localeCompare(dataB.title);
+                    case 'subscribers-desc':
+                        return dataB.subscribers - dataA.subscribers;
+                    case 'subscribers-asc':
+                        return dataA.subscribers - dataB.subscribers;
+                    case 'views-desc':
+                        return dataB.views - dataA.views;
+                    case 'views-asc':
+                        return dataA.views - dataB.views;
+                    case 'videos-desc':
+                        return dataB.videos - dataA.videos;
+                    case 'videos-asc':
+                        return dataA.videos - dataB.videos;
+                    case 'created-desc':
+                        return dataB.createdDate - dataA.createdDate;
+                    case 'created-asc':
+                        return dataA.createdDate - dataB.createdDate;
+                    default:
+                        return a.originalIndex - b.originalIndex;
+                }
+            });
+            
+            // Update display
+            updateChannelDisplay(filteredChannels);
+            updateFilterSummary(filteredChannels.length);
+        }
+        
+        function updateChannelDisplay(filteredChannels) {
+            const channelsGrid = document.querySelector('.channels-grid');
+            channelsGrid.classList.add('filtered');
+            
+            // Hide all channels first
+            channelsData.forEach(channel => {
+                channel.element.classList.add('hidden');
+            });
+            
+            // Show and reorder filtered channels
+            const container = channelsGrid;
+            filteredChannels.forEach((channel, index) => {
+                channel.element.classList.remove('hidden');
+                container.appendChild(channel.element);
+            });
+        }
+        
+        function updateFilterSummary(count) {
+            const summary = document.getElementById('filterSummary');
+            const total = channelsData.length;
+            
+            if (count === total) {
+                summary.textContent = `Showing all ${total} channels`;
+            } else {
+                summary.textContent = `Showing ${count} of ${total} channels`;
+            }
+        }
+        
+        function clearFilters() {
+            // Clear all filter inputs
+            document.getElementById('nameFilter').value = '';
+            document.getElementById('subMin').value = '';
+            document.getElementById('subMax').value = '';
+            document.getElementById('videoMin').value = '';
+            document.getElementById('videoMax').value = '';
+            document.getElementById('viewMin').value = '';
+            document.getElementById('viewMax').value = '';
+            document.getElementById('countryFilter').value = '';
+            document.getElementById('sizeFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('sortFilter').value = 'name';
+            
+            // Reset display
+            const channelsGrid = document.querySelector('.channels-grid');
+            channelsGrid.classList.remove('filtered');
+            
+            channelsData.forEach(channel => {
+                channel.element.classList.remove('hidden');
+            });
+            
+            // Restore original order
+            const container = channelsGrid;
+            channelsData
+                .sort((a, b) => a.originalIndex - b.originalIndex)
+                .forEach(channel => {
+                    container.appendChild(channel.element);
+                });
+            
+            updateFilterSummary(channelsData.length);
+        }
+        
+        function populateCountryOptions() {
+            const countrySelect = document.getElementById('countryFilter');
+            const countries = new Set();
+            
+            channelsData.forEach(channel => {
+                if (channel.data.country && channel.data.country !== 'No Information') {
+                    countries.add(channel.data.country);
+                }
+            });
+            
+            // Clear existing options except "All Countries"
+            const allOption = countrySelect.querySelector('option[value=""]');
+            countrySelect.innerHTML = '';
+            countrySelect.appendChild(allOption);
+            
+            // Add unique countries
+            Array.from(countries).sort().forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            });
+        }
+    </script>
 </body>
 </html>
